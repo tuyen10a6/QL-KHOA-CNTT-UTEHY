@@ -32,7 +32,7 @@
   }
 
   $(function() {
-    buildTable($('#table'), 50, 50);
+    buildTable($('#user'), 50, 50);
   });
 
   function actionFormatter(value, row, index) {

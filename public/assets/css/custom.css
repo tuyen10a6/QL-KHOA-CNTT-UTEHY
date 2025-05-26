@@ -1,0 +1,126 @@
+/* Override default colors */
+:root {
+    --primary-color: #2c5fcf;
+    --secondary-color: #234b8b;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+}
+
+/* Primary color overrides */
+.bg-primary, 
+.settings-panel .color-tiles .tiles.primary,
+.btn-primary,
+.navbar.navbar-primary .navbar-menu-wrapper {
+    background-color: var(--primary-color) !important;
+}
+
+/* Secondary color overrides */
+.bg-secondary,
+.navbar.navbar-secondary .navbar-menu-wrapper {
+    background-color: var(--secondary-color) !important;
+}
+
+/* Success color overrides */
+.bg-success,
+.settings-panel .color-tiles .tiles.success,
+.btn-success {
+    background-color: var(--success-color) !important;
+}
+
+/* Info color overrides */
+.bg-info,
+.settings-panel .color-tiles .tiles.info,
+.btn-info {
+    background-color: var(--info-color) !important;
+}
+
+/* Warning color overrides */
+.bg-warning,
+.settings-panel .color-tiles .tiles.warning,
+.btn-warning {
+    background-color: var(--warning-color) !important;
+}
+
+/* Danger color overrides */
+.bg-danger,
+.settings-panel .color-tiles .tiles.danger,
+.btn-danger {
+    background-color: var(--danger-color) !important;
+}
+
+/* Hover states */
+.btn-primary:hover {
+    background-color: #234b8b !important;
+}
+
+.btn-secondary:hover {
+    background-color: #1a3a6b !important;
+}
+
+.btn-success:hover {
+    background-color: #218838 !important;
+}
+
+.btn-info:hover {
+    background-color: #138496 !important;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800 !important;
+}
+
+.btn-danger:hover {
+    background-color: #c82333 !important;
+}
+
+/* Text colors */
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.text-secondary {
+    color: var(--secondary-color) !important;
+}
+
+.text-success {
+    color: var(--success-color) !important;
+}
+
+.text-info {
+    color: var(--info-color) !important;
+}
+
+.text-warning {
+    color: var(--warning-color) !important;
+}
+
+.text-danger {
+    color: var(--danger-color) !important;
+}
+
+/* Border colors */
+.border-primary {
+    border-color: var(--primary-color) !important;
+}
+
+.border-secondary {
+    border-color: var(--secondary-color) !important;
+}
+
+.border-success {
+    border-color: var(--success-color) !important;
+}
+
+.border-info {
+    border-color: var(--info-color) !important;
+}
+
+.border-warning {
+    border-color: var(--warning-color) !important;
+}
+
+.border-danger {
+    border-color: var(--danger-color) !important;
+} 

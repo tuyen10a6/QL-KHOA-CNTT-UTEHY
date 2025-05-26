@@ -33,7 +33,7 @@
     };
 
     var overrideFormats = function (editor) {
-      var alignElements = 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table', fontSizes = global$1.explode(getFontSizeStyleValues(editor)), schema = editor.schema;
+      var alignElements = 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,user', fontSizes = global$1.explode(getFontSizeStyleValues(editor)), schema = editor.schema;
       editor.formatter.register({
         alignleft: {
           selector: alignElements,

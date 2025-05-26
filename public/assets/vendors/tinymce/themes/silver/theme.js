@@ -9826,7 +9826,7 @@
         backgroundMenu: 'tox-background-menu',
         selectedMenu: 'tox-selected-menu',
         selectedItem: 'tox-collection__item--active',
-        hasIcons: 'tox-menu--has-icons',
+        hasIcons: 'tox-menu--has-device',
         menu: forMenu(presets),
         tieredMenu: 'tox-tiered-menu'
       };
@@ -11957,14 +11957,14 @@
           attributes: (_a = { role: 'button' }, _a['aria-labelledby'] = labelId, _a)
         },
         behaviours: derive$1([
-          config('insert-table-picker-cell', [
+          config('insert-user-picker-cell', [
             run(mouseover(), Focusing.focus),
             run(execute(), emitExecute),
             run(click(), onClick),
             run(tap(), onClick)
           ]),
           Toggling.config({
-            toggleClass: 'tox-insert-table-picker__selected',
+            toggleClass: 'tox-insert-user-picker__selected',
             toggleOnExecute: false
           }),
           Focusing.config({ onFocus: emitCellOver })
@@ -12005,7 +12005,7 @@
       var memLabel = record({
         dom: {
           tag: 'span',
-          classes: ['tox-insert-table-picker__label'],
+          classes: ['tox-insert-user-picker__label'],
           attributes: { id: sizeLabelId }
         },
         components: [text('0x0')],
@@ -12022,11 +12022,11 @@
         components: [parts$2.widget({
             dom: {
               tag: 'div',
-              classes: ['tox-insert-table-picker']
+              classes: ['tox-insert-user-picker']
             },
             components: makeComponents(cells).concat(memLabel.asSpec()),
             behaviours: derive$1([
-              config('insert-table-picker', [
+              config('insert-user-picker', [
                 runWithTarget(cellOverEvent, function (c, t, e) {
                   var row = e.event.row;
                   var col = e.event.col;
@@ -26979,7 +26979,7 @@
       }
     });
 
-    var defaultMenubar = 'file edit view insert format tools table help';
+    var defaultMenubar = 'file edit view insert format tools user help';
     var defaultMenus = {
       file: {
         title: 'File',
@@ -28382,7 +28382,7 @@
       return editor.getParam('contextmenu') === false;
     };
     var getContextMenu = function (editor) {
-      return getMenuItems(editor, 'contextmenu', 'link linkchecker image imagetools table spellchecker configurepermanentpen');
+      return getMenuItems(editor, 'contextmenu', 'link linkchecker image imagetools user spellchecker configurepermanentpen');
     };
     var getAvoidOverlapSelector = function (editor) {
       return editor.getParam('contextmenu_avoid_overlap', '', 'string');

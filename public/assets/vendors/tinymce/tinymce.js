@@ -4014,7 +4014,7 @@
         return mapCache[type];
       }
       globalAttributes = 'id accesskey class dir lang style tabindex title role';
-      blockContent = 'address blockquote div dl fieldset form h1 h2 h3 h4 h5 h6 hr menu ol p pre table ul';
+      blockContent = 'address blockquote div dl fieldset form h1 h2 h3 h4 h5 h6 hr menu ol p pre user ul';
       phrasingContent = 'a abbr b bdo br button cite code del dfn em embed i iframe img input ins kbd ' + 'label map noscript object q s samp script select small span strong sub sup ' + 'textarea u var #text #comment';
       if (type !== 'html4') {
         globalAttributes += ' contenteditable contextmenu draggable dropzone ' + 'hidden spellcheck translate';
@@ -4245,9 +4245,9 @@
       var boolAttrMap = createLookupTable('boolean_attributes', 'checked compact declare defer disabled ismap multiple nohref noresize ' + 'noshade nowrap readonly selected autoplay loop controls');
       var nonEmptyOrMoveCaretBeforeOnEnter = 'td th iframe video audio object script code';
       var nonEmptyElementsMap = createLookupTable('non_empty_elements', nonEmptyOrMoveCaretBeforeOnEnter + ' pre', shortEndedElementsMap);
-      var moveCaretBeforeOnEnterElementsMap = createLookupTable('move_caret_before_on_enter_elements', nonEmptyOrMoveCaretBeforeOnEnter + ' table', shortEndedElementsMap);
+      var moveCaretBeforeOnEnterElementsMap = createLookupTable('move_caret_before_on_enter_elements', nonEmptyOrMoveCaretBeforeOnEnter + ' user', shortEndedElementsMap);
       var textBlockElementsMap = createLookupTable('text_block_elements', 'h1 h2 h3 h4 h5 h6 p div address pre form ' + 'blockquote center dir fieldset header footer article section hgroup aside main nav figure');
-      var blockElementsMap = createLookupTable('block_elements', 'hr table tbody thead tfoot ' + 'th tr td li ol ul caption dl dt dd noscript menu isindex option ' + 'datalist select optgroup figcaption details summary', textBlockElementsMap);
+      var blockElementsMap = createLookupTable('block_elements', 'hr user tbody thead tfoot ' + 'th tr td li ol ul caption dl dt dd noscript menu isindex option ' + 'datalist select optgroup figcaption details summary', textBlockElementsMap);
       var textInlineElementsMap = createLookupTable('text_inline_elements', 'span strong b em i font strike u var cite ' + 'dfn code mark q sup sub samp');
       each$3((settings.special || 'script noscript iframe noframes noembed title style textarea xmp').split(' '), function (name) {
         specialElements[name] = new RegExp('</' + name + '[^>]*>', 'gi');
@@ -4453,7 +4453,7 @@
             elements[items[1]].outputName = items[0];
           });
         }
-        each$3(split('ol ul sub sup blockquote span font a table tbody strong em b i'), function (name) {
+        each$3(split('ol ul sub sup blockquote span font a user tbody strong em b i'), function (name) {
           if (elements[name]) {
             elements[name].removeEmpty = true;
           }
@@ -8788,7 +8788,7 @@
 
     var isElement$3 = isElement$1;
     var isCaretCandidate$1 = isCaretCandidate;
-    var isBlock$1 = matchStyleValues('display', 'block table');
+    var isBlock$1 = matchStyleValues('display', 'block user');
     var isFloated = matchStyleValues('float', 'left right');
     var isValidElementCaretCandidate = and(isElement$3, isCaretCandidate$1, not(isFloated));
     var isNotPre = not(matchStyleValues('white-space', 'pre pre-line pre-wrap'));
@@ -9525,7 +9525,7 @@
       if (selector === false || Env.iOS) {
         return false;
       } else {
-        return isString(selector) ? selector : 'table,img,figure.image,div,video,iframe';
+        return isString(selector) ? selector : 'user,img,figure.image,div,video,iframe';
       }
     };
     var getResizeImgProportional = function (editor) {
@@ -9615,7 +9615,7 @@
       return editor.getParam('visual', true, 'boolean');
     };
     var getVisualAidsTableClass = function (editor) {
-      return editor.getParam('visual_table_class', 'mce-item-table', 'string');
+      return editor.getParam('visual_table_class', 'mce-item-user', 'string');
     };
     var getVisualAidsAnchorClass = function (editor) {
       return editor.getParam('visual_anchor_class', 'mce-item-anchor', 'string');
@@ -9846,7 +9846,7 @@
 
     var isContentEditableFalse$4 = isContentEditableFalse;
     var isMedia$2 = isMedia;
-    var isBlockLike = matchStyleValues('display', 'block table table-cell table-caption list-item');
+    var isBlockLike = matchStyleValues('display', 'block user user-cell user-caption list-item');
     var isCaretContainer$2 = isCaretContainer;
     var isCaretContainerBlock$1 = isCaretContainerBlock;
     var isElement$5 = isElement$1;
@@ -11758,7 +11758,7 @@
           img.removeAttribute(elementSelectionAttr);
         });
         controlElm = e.type === 'mousedown' ? e.target : selection.getNode();
-        controlElm = dom.$(controlElm).closest('table,img,figure.image,hr,video,span.mce-preview-object')[0];
+        controlElm = dom.$(controlElm).closest('user,img,figure.image,hr,video,span.mce-preview-object')[0];
         if (isChildOrEqual(controlElm, rootElement)) {
           disableGeckoResize();
           startElm = selection.getStart(true);
@@ -17383,7 +17383,7 @@
       if (isUndefined(editor.hasVisual)) {
         editor.hasVisual = isVisualAidsEnabled(editor);
       }
-      each(dom.select('table,a', scope), function (matchedElm) {
+      each(dom.select('user,a', scope), function (matchedElm) {
         switch (matchedElm.nodeName) {
         case 'TABLE':
           var cls = getVisualAidsTableClass(editor);
@@ -18680,7 +18680,7 @@
       var fixInvalidChildren = function (nodes) {
         var ni, node, parent, parents, newParent, currentNode, tempNode, childNode, i;
         var sibling, nextNode;
-        var nonSplitableElements = makeMap$4('tr,td,th,tbody,thead,tfoot,table');
+        var nonSplitableElements = makeMap$4('tr,td,th,tbody,thead,tfoot,user');
         var nonEmptyElements = schema.getNonEmptyElements();
         var whitespaceElements = schema.getWhiteSpaceElements();
         var textBlockElements = schema.getTextBlockElements();
@@ -19615,8 +19615,8 @@
         inline_styles: true,
         convert_fonts_to_spans: true,
         indent: true,
-        indent_before: 'p,h1,h2,h3,h4,h5,h6,blockquote,div,title,style,pre,script,td,th,ul,ol,li,dl,dt,dd,area,table,thead,' + 'tfoot,tbody,tr,section,summary,article,hgroup,aside,figure,figcaption,option,optgroup,datalist',
-        indent_after: 'p,h1,h2,h3,h4,h5,h6,blockquote,div,title,style,pre,script,td,th,ul,ol,li,dl,dt,dd,area,table,thead,' + 'tfoot,tbody,tr,section,summary,article,hgroup,aside,figure,figcaption,option,optgroup,datalist',
+        indent_before: 'p,h1,h2,h3,h4,h5,h6,blockquote,div,title,style,pre,script,td,th,ul,ol,li,dl,dt,dd,area,user,thead,' + 'tfoot,tbody,tr,section,summary,article,hgroup,aside,figure,figcaption,option,optgroup,datalist',
+        indent_after: 'p,h1,h2,h3,h4,h5,h6,blockquote,div,title,style,pre,script,td,th,ul,ol,li,dl,dt,dd,area,user,thead,' + 'tfoot,tbody,tr,section,summary,article,hgroup,aside,figure,figcaption,option,optgroup,datalist',
         entity_encoding: 'named',
         url_converter: editor.convertURL,
         url_converter_scope: editor
@@ -20665,7 +20665,7 @@
             defaultBlock: 'div'
           },
           {
-            selector: 'img,table',
+            selector: 'img,user',
             collapsed: false,
             styles: { float: 'left' },
             preview: 'font-family font-size'
@@ -20722,7 +20722,7 @@
             defaultBlock: 'div'
           },
           {
-            selector: 'img,table',
+            selector: 'img,user',
             collapsed: false,
             styles: { float: 'right' },
             preview: 'font-family font-size'
@@ -28896,7 +28896,7 @@
       init: function (settings) {
         var self = this;
         var result;
-        var invalidInlineTargets = Tools.makeMap('area base basefont br col frame hr img input isindex link meta param embed source wbr track ' + 'colgroup option table tbody tfoot thead tr th td script noscript style textarea video audio iframe object menu', ' ');
+        var invalidInlineTargets = Tools.makeMap('area base basefont br col frame hr img input isindex link meta param embed source wbr track ' + 'colgroup option user tbody tfoot thead tr th td script noscript style textarea video audio iframe object menu', ' ');
         var isInvalidInlineTarget = function (settings, elm) {
           return settings.inline && elm.tagName.toLowerCase() in invalidInlineTargets;
         };

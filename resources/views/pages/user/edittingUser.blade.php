@@ -12,7 +12,6 @@
                         </p>
                         <form class="forms-sample" action="{{ url('/danh-sach-nguoi-dung/sua/' . $user->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
-
                             <div class="form-group">
                                 <label for="ten">Tên</label>
                                 <input type="text" class="form-control" id="ten" name="ten" placeholder="Tên" value="{{ old('ten', $user->ten) }}">
@@ -38,6 +37,18 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="khoa_id">Khoa</label>
+                                <select name="khoa_id" class="form-control">
+                                    <option value="">Chọn khoa</option>
+                                    @foreach($khoaList as $khoa)
+                                        <option value="{{ $khoa->id }}" {{ $user->khoa_id == $khoa->id ? 'selected' : '' }}>
+                                            {{ $khoa->ten_khoa }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="trang_thai">Trạng Thái</label>
                                 <input type="checkbox" name="trang_thai" value="1" {{ $user->trang_thai ? 'checked' : '' }}> Hoạt động
                             </div>
@@ -57,6 +68,22 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="cccd">CCCD</label>
+                                <input type="text" class="form-control" id="cccd" name="cccd" placeholder="CCCD" value="{{ old('cccd', $user->cccd) }}">
+                            </div>
+
+                            {{-- Phần mới: Trường mật khẩu --}}
+                            <div class="form-group">
+                                <label for="mat_khau">Mật Khẩu Mới (nếu có)</label>
+                                <input type="password" class="form-control" id="mat_khau" name="mat_khau" placeholder="Mật Khẩu Mới">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="mat_khau_confirmation">Xác Nhận Mật Khẩu Mới</label>
+                                <input type="password" class="form-control" id="mat_khau_confirmation" name="mat_khau_confirmation" placeholder="Xác Nhận Mật Khẩu Mới">
+                            </div>
+
+                            <div class="form-group">
                                 <label for="avatar">Avatar</label>
                                 <input type="file" class="form-control" id="avatar" name="avatar">
                                 @if ($user->avatar)
@@ -65,13 +92,9 @@
                                 @endif
                             </div>
 
-                            <div class="form-group">
-                                <label for="cccd">CCCD</label>
-                                <input type="text" class="form-control" id="cccd" name="cccd" placeholder="CCCD" value="{{ old('cccd', $user->cccd) }}">
-                            </div>
-
                             <button type="submit" class="btn btn-primary mr-2">Cập Nhật</button>
                         </form>
+
                     </div>
                 </div>
             </div>

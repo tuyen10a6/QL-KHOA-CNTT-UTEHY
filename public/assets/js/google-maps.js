@@ -29,7 +29,7 @@ function initMap() {
       zoom: MapZoom,
       center: MapLocation
     });
-    var iconBase = '../../images/file-icons/';
+    var iconBase = '../../images/file-device/';
     var marker_2 = new google.maps.Marker({
       position: MapLocation,
       map: CustomMarker,
@@ -66,9 +66,9 @@ function initMap() {
           }
         ]
       }]
-    });  
+    });
   }
-  
+
   // Apple Theme
   if($("#apple-map-theme").length) {
     var AppletThemeMap = new google.maps.Map(document.getElementById('apple-map-theme'), {
@@ -553,9 +553,9 @@ function initMap() {
           }]
         }
       ]
-    });  
+    });
   }
-  
+
   // Propia Theme
   if($("#propia-map-theme").length) {
     var PropiaThemeMap = new google.maps.Map(document.getElementById('propia-map-theme'), {

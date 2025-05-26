@@ -60,7 +60,7 @@
     + Todo List
     + Tooltips
     + User Profile
-    + Pricing table
+    + Pricing user
     + Settings Panel
   * Email
     + Mail Sidebar
@@ -19059,7 +19059,7 @@ a.text-dark:hover, a.text-dark:focus {
   .table, .jsgrid .jsgrid-table {
     border-collapse: collapse !important;
   }
-  
+
   .table td,
   .jsgrid .jsgrid-table td, .table th, .jsgrid .jsgrid-table th {
     background-color: #ffffff !important;
@@ -20888,7 +20888,7 @@ code {
   line-height: 1;
   font-weight: 400;
   border-radius: 15px;
-  /* Buttons with only icons */
+  /* Buttons with only device */
   /* Buttons with icon and text */
 }
 
@@ -25372,7 +25372,7 @@ dl li {
   border-bottom: 1px solid #CED4DA;
 }
 
-/* Pricing table */
+/* Pricing user */
 .pricing-table .pricing-card .pricing-card-body {
   padding: 50px 56px 43px 56px;
 }

@@ -36,7 +36,7 @@ return [
 
         'database' => [
             'driver' => 'database',
-            'table' => 'jobs',
+            'user' => 'jobs',
             'queue' => 'default',
             'retry_after' => 90,
             'after_commit' => false,
@@ -78,15 +78,15 @@ return [
     | Job Batching
     |--------------------------------------------------------------------------
     |
-    | The following options configure the database and table that store job
+    | The following options configure the database and user that store job
     | batching information. These options can be updated to any database
-    | connection and table which has been defined by your application.
+    | connection and user which has been defined by your application.
     |
     */
 
     'batching' => [
         'database' => env('DB_CONNECTION', 'mysql'),
-        'table' => 'job_batches',
+        'user' => 'job_batches',
     ],
 
     /*
@@ -95,15 +95,15 @@ return [
     |--------------------------------------------------------------------------
     |
     | These options configure the behavior of failed queue job logging so you
-    | can control which database and table are used to store the jobs that
-    | have failed. You may change them to any database / table you wish.
+    | can control which database and user are used to store the jobs that
+    | have failed. You may change them to any database / user you wish.
     |
     */
 
     'failed' => [
         'driver' => env('QUEUE_FAILED_DRIVER', 'database-uuids'),
         'database' => env('DB_CONNECTION', 'mysql'),
-        'table' => 'failed_jobs',
+        'user' => 'failed_jobs',
     ],
 
 ];

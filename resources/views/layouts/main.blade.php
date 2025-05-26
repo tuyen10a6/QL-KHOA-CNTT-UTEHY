@@ -6,37 +6,100 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Skydash Admin</title>
-
+   <script src="https://cdn.ckeditor.com/ckeditor5/38.0.0/classic/ckeditor.js"></script>
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{ asset('assets/vendors/feather/feather.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
-
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
   <!-- endinject -->
   <!-- Plugin css for this page -->
   <link rel="stylesheet" href="{{ asset('assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/vendors/ti-device/css/themify-device.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/select.dataTables.min.css') }}">
   <!-- End plugin css for this page -->
 
   <!-- inject:css -->
   <link rel="stylesheet" href="{{ asset('assets/css/vertical-layout-light/style.css') }}">
-
+  <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">
-
   <!-- endinject -->
   <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
+    <style>
+        .container-scroller {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+        }
+        .banner-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 30vh;
+            width: 50vw;
+            background-color: #fff;
+            color: black;
+            padding: 10px;
+            text-align: center;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        .close-btnPopup {
+            background-color: transparent;
+            color: black;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            font-size: 20px;
+        }
+        .banner-contentPopup {
+            position: relative;
+        }
+    </style>
 </head>
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
    @include('partials.navbar')
-
-    <!-- partial -->
+      <div class="banner-popup" id="banner-popup">
+          <div class="banner-contentPopup">
+              <strong>THÔNG BÁO KHẨN CẤP</strong> <!-- Dòng đầu là THÔNG BÁO KHẨN CẤP -->
+              <h4 id="popup-title"></h4> <!-- Dùng để hiển thị tiêu đề -->
+              <p id="popup-content"></p> <!-- Dùng để hiển thị nội dung -->
+              <button class="close-btnPopup" id="close-banner">X</button>
+          </div>
+      </div>
+      <!-- Flash Messages -->
+      <div style="position: fixed; top: 80px; right: 20px; z-index: 9999;">
+          @if(session('success'))
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  {{ session('success') }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+          @endif
+          @if(session('error'))
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  {{ session('error') }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+          @endif
+      </div>
+      <!-- partial -->
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_settings-panel.html -->
       <div class="theme-setting-wrapper">
-        <div id="settings-trigger"><i class="ti-settings"></i></div>
         <div id="theme-settings" class="settings-panel">
           <i class="settings-close ti-close"></i>
           <p class="settings-heading">SIDEBAR SKINS</p>
@@ -140,67 +203,6 @@
               <p class="text-gray mb-0 ">Call Sarah Graves</p>
             </div>
           </div>
-          <!-- To do section tab ends -->
-          <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
-            <div class="d-flex align-items-center justify-content-between border-bottom">
-              <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>
-              <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 font-weight-normal">See All</small>
-            </div>
-            <ul class="chat-list">
-              <li class="list active">
-                <div class="profile"><img src="images/faces/face1.jpg" alt="image"><span class="online"></span></div>
-                <div class="info">
-                  <p>Thomas Douglas</p>
-                  <p>Available</p>
-                </div>
-                <small class="text-muted my-auto">19 min</small>
-              </li>
-              <li class="list">
-                <div class="profile"><img src="images/faces/face2.jpg" alt="image"><span class="offline"></span></div>
-                <div class="info">
-                  <div class="wrapper d-flex">
-                    <p>Catherine</p>
-                  </div>
-                  <p>Away</p>
-                </div>
-                <div class="badge badge-success badge-pill my-auto mx-2">4</div>
-                <small class="text-muted my-auto">23 min</small>
-              </li>
-              <li class="list">
-                <div class="profile"><img src="images/faces/face3.jpg" alt="image"><span class="online"></span></div>
-                <div class="info">
-                  <p>Daniel Russell</p>
-                  <p>Available</p>
-                </div>
-                <small class="text-muted my-auto">14 min</small>
-              </li>
-              <li class="list">
-                <div class="profile"><img src="images/faces/face4.jpg" alt="image"><span class="offline"></span></div>
-                <div class="info">
-                  <p>James Richardson</p>
-                  <p>Away</p>
-                </div>
-                <small class="text-muted my-auto">2 min</small>
-              </li>
-              <li class="list">
-                <div class="profile"><img src="images/faces/face5.jpg" alt="image"><span class="online"></span></div>
-                <div class="info">
-                  <p>Madeline Kennedy</p>
-                  <p>Available</p>
-                </div>
-                <small class="text-muted my-auto">5 min</small>
-              </li>
-              <li class="list">
-                <div class="profile"><img src="images/faces/face6.jpg" alt="image"><span class="online"></span></div>
-                <div class="info">
-                  <p>Sarah Graves</p>
-                  <p>Available</p>
-                </div>
-                <small class="text-muted my-auto">47 min</small>
-              </li>
-            </ul>
-          </div>
-          <!-- chat tab ends -->
         </div>
       </div>
       <!-- partial -->
@@ -208,7 +210,6 @@
       <!-- partial:partials/_sidebar.html -->
       @include('partials.sidebar')
       <!-- partial -->
-
 
       <div class="main-panel">
         @yield('content')
@@ -224,9 +225,11 @@
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-
   <!-- plugins:js -->
   <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
+  <!-- Thêm jQuery trước Select2 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
   <!-- endinject -->
   <!-- Plugin js for this page -->
   <script src="{{ asset('assets/vendors/chart.js/Chart.min.js') }}"></script>
@@ -241,6 +244,7 @@
   <script src="{{ asset('assets/js/template.js') }}"></script>
   <script src="{{ asset('assets/js/settings.js') }}"></script>
   <script src="{{ asset('assets/js/todolist.js') }}"></script>
+  <!-- Thêm CKEditor 5 từ CDN -->
 
   <!-- endinject -->
   <!-- Plugin js for this page -->
@@ -254,7 +258,6 @@
   <script src="{{ asset('assets/js/settings.js') }}"></script>
   <script src="{{ asset('assets/js/todolist.js') }}"></script>
   <!-- endinject -->
-
   <!-- Custom js for this page-->
   <script src="{{ asset('assets/js/chart.js') }}"></script>
   <!-- endinject -->
@@ -262,6 +265,67 @@
   <!-- Custom js for this page-->
   <script src="{{ asset('assets/js/dashboard.js') }}"></script>
   <script src="{{ asset('assets/js/Chart.roundedBarCharts.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+  @if(!$emergencyAlerts->isEmpty()) <!-- Chỉ chạy đoạn script này khi có emergencyAlerts chưa đọc -->
+  <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          let alerts = @json($emergencyAlerts); // Chuyển thông báo khẩn cấp sang dạng JSON
+          if (alerts.length > 0) {
+              // Lấy phần tử pop-up
+              let bannerPopup = document.getElementById('banner-popup');
+              let popupTitle = document.getElementById('popup-title'); // Phần tử để hiển thị tiêu đề
+              let popupContent = document.getElementById('popup-content'); // Phần tử để hiển thị nội dung
+              let overlay = document.getElementById('container-scroller');
+              const closeBannerButton = document.getElementById('close-banner');
+
+              // Hiển thị pop-up với nội dung từ thông báo đầu tiên
+              let alert = alerts[0]; // Chỉ lấy thông báo đầu tiên (có thể lặp qua nhiều nếu cần)
+              popupTitle.textContent = alert.tieu_de; // Hiển thị tiêu đề
+              popupContent.textContent = alert.noi_dung; // Hiển thị nội dung
+              bannerPopup.style.display = 'block'; // Hiển thị pop-up
+
+              document.querySelector('#close-banner').addEventListener('click', function() {
+                  console.log('Button clicked, preparing to send fetch request.');
+                  console.log('Sending request with ID:', alert.id); // Kiểm tra ID
+
+                  // Gửi yêu cầu AJAX để đánh dấu thông báo đã xem khi đóng popup
+                  fetch("{{ route('thong-bao.markAsRead') }}", {
+                      method: 'POST',
+                      headers: {
+                          'Content-Type': 'application/json',
+                          'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                      },
+                      body: JSON.stringify({ id: alert.id }) // Gửi ID của thông báo
+                  })
+                      .then(response => {
+                          if (!response.ok) {
+                              throw new Error('Network response was not ok');
+                          }
+                          return response.json();
+                      })
+                      .then(data => {
+                          console.log(data.status); // Log trạng thái thành công
+                          // Ẩn pop-up sau khi đánh dấu đã đọc
+                          bannerPopup.style.display = 'none';
+                          overlay.style.display = 'none';
+                      })
+                      .catch(error => {
+                          console.error('Error:', error);
+                          // Ngay cả khi có lỗi, ẩn pop-up
+                          bannerPopup.style.display = 'none';
+                          overlay.style.display = 'none';
+                      });
+                  closeBannerButton.addEventListener('click', () => {
+                      bannerPopup.style.display = 'none';
+                      overlay.style.display = 'none';
+                  });
+              });
+          }
+      });
+  </script>
+  @endif
+
+
   <!-- End custom js for this page-->
 </body>
 

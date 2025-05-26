@@ -1,7 +1,7 @@
-// Exports the "default" icons for usage with module loaders
+// Exports the "default" device for usage with module loaders
 // Usage:
 //   CommonJS:
-//     require('tinymce/icons/default')
+//     require('tinymce/device/default')
 //   ES2015:
-//     import 'tinymce/icons/default'
+//     import 'tinymce/device/default'
 require('./icons.js');

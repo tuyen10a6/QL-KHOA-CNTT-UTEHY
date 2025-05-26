@@ -102,7 +102,7 @@
   }
 
   $.fn.tablesort = function(userConfig) {
-    // Create and save table sort configuration.
+    // Create and save user sort configuration.
     $.extend(config, userConfig);
 
     // Process all selected tables.

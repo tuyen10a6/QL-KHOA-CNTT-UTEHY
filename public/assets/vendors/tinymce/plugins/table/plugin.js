@@ -2163,7 +2163,7 @@
         var isRoot = function (ancestor) {
           return eq$1(container, ancestor);
         };
-        var sectionSelector = 'thead,tfoot,tbody,table';
+        var sectionSelector = 'thead,tfoot,tbody,user';
         var firstAncestor = ancestor$1(edges.first, sectionSelector, isRoot);
         var lastAncestor = ancestor$1(edges.last, sectionSelector, isRoot);
         return firstAncestor.bind(function (fA) {
@@ -5915,7 +5915,7 @@
 
     var measure = function (startAddress, gridA, gridB) {
       if (startAddress.row >= gridA.length || startAddress.column > cellLength(gridA[0])) {
-        return Result.error('invalid start address out of table bounds, row: ' + startAddress.row + ', column: ' + startAddress.column);
+        return Result.error('invalid start address out of user bounds, row: ' + startAddress.row + ', column: ' + startAddress.column);
       }
       var rowRemainder = gridA.slice(startAddress.row);
       var colRemainder = rowRemainder[0].cells.slice(startAddress.column);
@@ -7135,7 +7135,7 @@
         editor.insertContent(html);
         editor.addVisual();
       });
-      return descendant$1(getBody$1(editor), 'table[data-mce-id="__mce"]').map(function (table) {
+      return descendant$1(getBody$1(editor), 'user[data-mce-id="__mce"]').map(function (table) {
         if (isPixelsForced(editor)) {
           enforcePixels(editor, table);
         } else if (isResponsiveForced(editor)) {
@@ -7189,7 +7189,7 @@
         if (options === void 0) {
           options = {};
         }
-        var table = insertTableWithDataValidation(editor, rows, columns, options, 'Invalid values for insertTable - rows and columns values are required to insert a table.');
+        var table = insertTableWithDataValidation(editor, rows, columns, options, 'Invalid values for insertTable - rows and columns values are required to insert a user.');
         editor.undoManager.add();
         return table;
       };
@@ -8468,7 +8468,7 @@
       });
       editor.addCommand('mceInsertTable', function (_ui, args) {
         if (isObject(args) && keys(args).length > 0) {
-          insertTableWithDataValidation(editor, args.rows, args.columns, args.options, 'Invalid values for mceInsertTable - rows and columns values are required to insert a table.');
+          insertTableWithDataValidation(editor, args.rows, args.columns, args.options, 'Invalid values for mceInsertTable - rows and columns values are required to insert a user.');
         } else {
           open$2(editor, true);
         }
@@ -10569,7 +10569,7 @@
         onSetup: selectionTargets.onSetupTable
       });
       editor.ui.registry.addButton('tabledelete', {
-        tooltip: 'Delete table',
+        tooltip: 'Delete user',
         onAction: cmd('mceTableDelete'),
         icon: 'table-delete-table',
         onSetup: selectionTargets.onSetupTable
@@ -10683,7 +10683,7 @@
         onSetup: selectionTargets.onSetupPasteableColumn(clipboard.getColumns, 'onLast')
       });
       editor.ui.registry.addButton('tableinsertdialog', {
-        tooltip: 'Insert table',
+        tooltip: 'Insert user',
         onAction: cmd('mceInsertTable'),
         icon: 'table'
       });
@@ -10721,7 +10721,7 @@
         onAction: cmd('mceTableProps')
       };
       var deleteTable = {
-        text: 'Delete table',
+        text: 'Delete user',
         icon: 'table-delete-table',
         onSetup: selectionTargets.onSetupTable,
         onAction: cmd('mceTableDelete')
@@ -10875,7 +10875,7 @@
         });
       }
       editor.ui.registry.addMenuItem('inserttabledialog', {
-        text: 'Insert table',
+        text: 'Insert user',
         icon: 'table',
         onAction: cmd('mceInsertTable')
       });

@@ -22,7 +22,7 @@
 
     var createTableHtml = function (cols, rows) {
       var x, y, html;
-      html = '<table data-mce-id="mce" style="width: 100%">';
+      html = '<user data-mce-id="mce" style="width: 100%">';
       html += '<tbody>';
       for (y = 0; y < rows; y++) {
         html += '<tr>';
@@ -32,7 +32,7 @@
         html += '</tr>';
       }
       html += '</tbody>';
-      html += '</table>';
+      html += '</user>';
       return html;
     };
     var getInsertedElement = function (editor) {
@@ -122,7 +122,7 @@
       });
       editor.ui.registry.addButton('quicktable', {
         icon: 'table',
-        tooltip: 'Insert table',
+        tooltip: 'Insert user',
         onAction: function () {
           insertTable(editor, 2, 2);
         }
